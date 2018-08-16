@@ -46,7 +46,7 @@ Make sure to include the `ez_load_more_button` function outside of your loop.
 
   {% set args = {
     'template': 'partials/teaser',
-     'label': 'Load more'
+    'label': 'Load more'
     'context': 'archive'
   } %}
   {{ function('ez_load_more_button', args) }}
@@ -58,7 +58,7 @@ Make sure to include the `ez_load_more_button` function outside of your loop.
 ```
 if (have_posts()) {
 	while (have_posts()) : the_post();
-		get_template_part('content', 'homepage');
+		get_template_part('content', 'teaser');
 	endwhile; // end of the loop.
 	
 	$args = [
