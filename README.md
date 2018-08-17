@@ -38,7 +38,7 @@ Make sure to include the `ez_load_more_button` function outside of your loop.
 
   {% if posts %}
     {% for post in posts %}
-      {% include ['partials/teaser.twig', 'partials/list-tease.twig'] %}
+      {% include 'partials/teaser.twig' %}
     {% endfor %}`
   {% else %}
     <p>{{ t('No posts available') }}.</p>
@@ -65,7 +65,7 @@ if (have_posts()) {
 		// Required
 		'template' => 'teaser',
 		'label' => 'Load more',
-		'context' => 'homepage',
+		'context' => 'archive',
 		// Not required
 		'button_class' => 'my-custom-button-class',
 		'custom_loader' => 'lds-ripple',
