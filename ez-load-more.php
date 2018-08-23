@@ -44,6 +44,11 @@ class EzLoadMore {
 	public function ez_load_more_button( $args, $paged ) {
 		global $wp_query;
 
+		// Only show with more than 1 max num page
+		if($wp_query->max_num_pages <= 1) { 
+			return;
+		}
+		
 		// Lets recreate the current query within our ajax call
 		wp_localize_script( 'ez-load-more-js', 'load_more_data', array( 'query' => $wp_query->query ) );
 

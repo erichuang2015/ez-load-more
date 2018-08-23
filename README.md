@@ -22,7 +22,7 @@ name |  required | description
 ------------ | ------------- | -------------
 template | yes | The template for the post teasers, in twig (via Timber) or regular WordPress php templates. 
 label | yes | The label used in the load more button
-context | yes | will be used to set nonces for this specific AJAX call
+context | yes | Will be used to set nonces for this specific AJAX call
 button_class | no | The class set on the load more button
 custom_loader | no | If adjusting the color and width is not enough, you can overwrite the default loader by setting this parameter to a div classname. Make sure your html with this div is located in a `ajax-loader.php` template in your active theme). Make sure the div class is hidden by default (`display:none`), it will be displayed by javascript. (Tip: [Pure CSS Loaders](https://loading.io/css/))
 
