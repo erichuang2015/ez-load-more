@@ -2,6 +2,7 @@
 /*
 	Plugin Name: Ez Load More
 	Description: Easily add ajax load more buttons to WordPress queries
+  Plugin URI: https://github.com/paulhuisman/ez-load-more
 	Author: Paul Huisman
 	Version: 0.1
 */
