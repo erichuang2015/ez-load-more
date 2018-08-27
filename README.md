@@ -24,7 +24,7 @@ template | yes | The template for the post teasers, in twig (via Timber) or regu
 label | yes | The label used in the load more button
 context | yes | Will be used to set nonces for this specific AJAX call
 button_class | no | The class set on the load more button
-custom_loader | no | If adjusting the color and width is not enough, you can overwrite the default loader by setting this parameter to a div classname. Make sure your html with this div is located in a `ajax-loader.php` template in your active theme). Make sure the div class is hidden by default (`display:none`), it will be displayed by javascript. (Tip: [Pure CSS Loaders](https://loading.io/css/))
+custom_loader | no | You can overwrite the default loader by setting this parameter to a div classname. Make sure your html with this div is located in a `ajax-loader.php` template in your active theme). Make sure the div class is hidden by default (`display:none`), it will be displayed by javascript. (Tip: [Pure CSS Loaders](https://loading.io/css/))
 
 
 Examples
@@ -36,13 +36,9 @@ Make sure to include the `ez_load_more_button` function outside of your loop.
 ```
 {% block content %}
 
-  {% if posts %}
-    {% for post in posts %}
-      {% include 'partials/teaser.twig' %}
-    {% endfor %}`
-  {% else %}
-    <p>{{ t('No posts available') }}.</p>
-  {% endif %}
+  {% for post in posts %}
+    {% include 'partials/teaser.twig' %}
+  {% endfor %}
 
   {% set args = {
     'template': 'partials/teaser',
