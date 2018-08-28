@@ -87,36 +87,37 @@ class EzLoadMore {
 	 */
 	public function ez_load_more_posts() {
 		if ( empty( $_POST['nonce'] ) || empty( $_POST['template'] ) || empty( $_POST['paged'] ) || ! wp_verify_nonce( $_POST['nonce'], 'ez-load-more-nonce-'  . $_POST['context'] ) ) {
-		   exit;
-		} else {
-			global $post; // required by setup post data
-			$context = ( ! empty( $_POST['context'] ) ) ? sanitize_text_field( $_POST['context'] ) : 'default';
-			$args = (array) $_POST['query'];
-			$args['paged'] = sanitize_text_field( $_POST['paged'] );
+		  exit;
+		} 
+	
+		global $post; // required by setup post data
+		$context = ( ! empty( $_POST['context'] ) ) ? sanitize_text_field( $_POST['context'] ) : 'default';
+		$args = (array) $_POST['query'];
+		$args['paged'] = sanitize_text_field( $_POST['paged'] );
 
-			// A filter if you want to customize the query
-			$args = apply_filters( 'ez-load-more-args-' . sanitize_text_field( $_POST['context'] ), $args );
-			
-			$query = new WP_Query( $args );
-			$posts = $query->get_posts();
-			
-			foreach( $posts as $post ) {
-				if ( class_exists( 'Timber' ) ) {
-					$context = \Timber::get_context();
-					$context['item'] = new \TimberPost($post->ID);
-					
-					\Timber::render($_POST['template'] . '.twig', $context);
-				}
-				else {
-					setup_postdata( $post );
-					get_template_part( 'content', $template );
-				}
-				wp_reset_postdata();
+		// A filter if you want to customize the query
+		$args = apply_filters( 'ez-load-more-args-' . sanitize_text_field( $_POST['context'] ), $args );
+		
+		$query = new WP_Query( $args );
+		$posts = $query->get_posts();
+		
+		foreach( $posts as $post ) {
+			if ( class_exists( 'Timber' ) ) {
+				$context = \Timber::get_context();
+				$context['item'] = new \TimberPost($post->ID);
+				
+				\Timber::render($_POST['template'] . '.twig', $context);
 			}
+			else {
+				setup_postdata( $post );
+				get_template_part( 'content', $template );
+			}
+			wp_reset_postdata();
 		}
 		exit;
 	}
 }
+
 new EzLoadMore();
 
 endif;
